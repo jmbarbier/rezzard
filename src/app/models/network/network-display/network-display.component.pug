@@ -1,0 +1,31 @@
+doctype html
+
+.row
+  .col-md-8
+    svg.network(viewBox="0 0 105 105",
+      preserveAspectRatio="xMidYMid meet",
+      *ngIf="network")
+      ng-container(*ngFor="let l of network.links")
+        svg:g(
+          appLinkDisplay,
+          [link]="l",
+          [scale]="scale",
+        )
+      svg:g([attr.transform]="'scale('+scale+')'")
+        ng-container(*ngFor="let n of network.nodes")
+          svg:g(
+            appNodeDisplay,
+            [node]="n",
+            [scale]="scale",
+          )
+        ng-container(*ngFor="let p of network.packets")
+          svg:g(
+            appPacketDisplay,
+            [packet]="p",
+            [scale]="scale",
+          )
+  .col-md-4
+    .row
+      ng-container(*ngFor="let p of network.packets")
+        .col-md-6
+          app-packet-infos([packet]="p", (remove)="network.removePacket($event)")

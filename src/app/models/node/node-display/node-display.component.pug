@@ -1,0 +1,15 @@
+svg:svg(
+  [attr.x]="node.pos.x*(100)/scale",
+  [attr.y]="node.pos.y*(100)/scale",
+  viewPort="0 0 100 100")
+
+  svg:polygon(
+    points="0,0 0,100 100,100 100,0 0,0"
+    fill="rgba(255,255,124,0.1)",
+    stroke="black" stroke-width="4")
+  svg:text(
+    x="50",
+    y="50",
+    font-size="50",
+    text-anchor="middle",
+    alignment-baseline="middle") {{node.id}}

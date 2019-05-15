@@ -1,0 +1,13 @@
+div.packet([style.border]="'1px solid rgba('+packet.color.r+','+packet.color.g+','+packet.color.b+','+packet.color.a+')'").m-2
+  div([style.backgroundColor]="'rgba('+packet.color.r+','+packet.color.g+','+packet.color.b+','+packet.color.a+')'").color
+  .p-2
+    div
+      .badge.badge-success.float-right.pointer(*ngIf="packet.arrived", (click)="remove.emit(packet)") OK
+      .badge.badge-danger.float-right.pointer(*ngIf="packet.dead", (click)="remove.emit(packet)") dead
+      | Paquet {{packet.id}}
+    div Dest : {{packet.start.id}} -> {{packet.dest.id}}
+    div Hops : {{packet.path.length - 1}}
+    div Route :&nbsp;
+      span(*ngFor="let p of packet.path") {{p.id}} &nbsp;
+
+
